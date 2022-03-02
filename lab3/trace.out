@@ -1,0 +1,39 @@
+2301  execve("/bin/sh", ["sh", "-c", "cat ./ | cut -f1 -d: | sort"], 0x7ffce7cfda38 /* 68 vars */) = 0
+2301  arch_prctl(0x3001 /* ARCH_??? */, 0x7fff6c666cd0) = -1 EINVAL (Invalid argument)
+2301  arch_prctl(ARCH_SET_FS, 0x7f1699fed580) = 0
+2301  pipe([3, 4])                      = 0
+2301  clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f1699fed850) = 2302
+2302  execve("/bin/cat", ["cat", "./"], 0x55df4cdf13a8 /* 68 vars */) = 0
+2301  pipe([4, 5])                      = 0
+2302  arch_prctl(0x3001 /* ARCH_??? */, 0x7ffe56634240 <unfinished ...>
+2301  clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
+2302  <... arch_prctl resumed>)         = -1 EINVAL (Invalid argument)
+2301  <... clone resumed>, child_tidptr=0x7f1699fed850) = 2303
+2303  execve("/usr/bin/cut", ["cut", "-f1", "-d:"], 0x55df4cdf13d8 /* 68 vars */ <unfinished ...>
+2301  clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
+2303  <... execve resumed>)             = 0
+2301  <... clone resumed>, child_tidptr=0x7f1699fed850) = 2304
+2303  arch_prctl(0x3001 /* ARCH_??? */, 0x7fff94b7b350 <unfinished ...>
+2301  wait4(-1,  <unfinished ...>
+2303  <... arch_prctl resumed>)         = -1 EINVAL (Invalid argument)
+2304  execve("/usr/bin/sort", ["sort"], 0x55df4cdf11f8 /* 68 vars */ <unfinished ...>
+2302  arch_prctl(ARCH_SET_FS, 0x7fb3c0898580) = 0
+2303  arch_prctl(ARCH_SET_FS, 0x7f77eb0c5580) = 0
+2302  exit_group(1)                     = ?
+2303  exit_group(0)                     = ?
+2303  +++ exited with 0 +++
+2302  +++ exited with 1 +++
+2301  <... wait4 resumed>[{WIFEXITED(s) && WEXITSTATUS(s) == 1}], 0, NULL) = 2302
+2301  --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=2303, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+2301  wait4(-1,  <unfinished ...>
+2304  <... execve resumed>)             = 0
+2301  <... wait4 resumed>[{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 2303
+2301  wait4(-1,  <unfinished ...>
+2304  arch_prctl(0x3001 /* ARCH_??? */, 0x7fff9c56a540) = -1 EINVAL (Invalid argument)
+2304  arch_prctl(ARCH_SET_FS, 0x7fa64fa50740) = 0
+2304  exit_group(0)                     = ?
+2304  +++ exited with 0 +++
+2301  <... wait4 resumed>[{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 2304
+2301  --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=2304, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+2301  exit_group(0)                     = ?
+2301  +++ exited with 0 +++
