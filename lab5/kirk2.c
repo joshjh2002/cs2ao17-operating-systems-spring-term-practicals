@@ -15,30 +15,30 @@ struct my_msgbuf
 int main(void)
 {
     struct my_msgbuf buf;
-    int msqid;
-    key_t key;
+    int msqid_spock;
+    key_t key_spock;
 
-    int msqid2;
-    key_t key2;
+    int msqid_starfleet;
+    key_t key_starfleet;
 
-    if ((key = ftok("kirk2.c", 'A')) == -1) // Give it the ID A to talk to kirk2.c A. This links to spock
+    if ((key_spock = ftok("kirk2.c", 'A')) == -1) // Give it the ID A to talk to kirk2.c A. This links to spock
     {
         perror("ftok");
         exit(1);
     }
-    if ((msqid = msgget(key, 0644 | IPC_CREAT)) == -1)
+    if ((msqid_spock = msgget(key_spock, 0644 | IPC_CREAT)) == -1)
     {
         perror("msgget");
         exit(1);
     }
 
-    if ((key2 = ftok("kirk2.c", 'B')) == -1) // Give it the ID B to talk to kirk2.c B. This links to the starfleet
+    if ((key_starfleet = ftok("kirk2.c", 'B')) == -1) // Give it the ID B to talk to kirk2.c B. This links to the starfleet
     {
         perror("ftok");
         exit(1);
     }
 
-    if ((msqid2 = msgget(key2, 0644 | IPC_CREAT)) == -1)
+    if ((msqid_starfleet = msgget(key_starfleet, 0644 | IPC_CREAT)) == -1)
     {
         perror("msgget");
         exit(1);
@@ -67,20 +67,20 @@ int main(void)
             }
         }
 
-        // if isUpper is true, then it is an urgent message so we send to the starfleet (msqid2)
+        // if isUpper is true, then it is an urgent message so we send to the starfleet (msqid_starfleet)
         if (isUpper)
         {
-            if (msgsnd(msqid2, &buf, len + 1, 0) == -1) /* +1 for '\0' */
+            if (msgsnd(msqid_starfleet, &buf, len + 1, 0) == -1) /* +1 for '\0' */
                 perror("msgsnd");
         }
         else // otherwise, send to spock
         {
-            if (msgsnd(msqid, &buf, len + 1, 0) == -1) /* +1 for '\0' */
+            if (msgsnd(msqid_spock, &buf, len + 1, 0) == -1) /* +1 for '\0' */
                 perror("msgsnd");
         }
     }
 
-    if (msgctl(msqid, IPC_RMID, NULL) == -1)
+    if (msgctl(msqid_spock, IPC_RMID, NULL) == -1)
     {
         perror("msgctl");
         exit(1);
