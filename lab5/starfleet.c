@@ -17,8 +17,8 @@ int main(void)
     int msqid;
     key_t key;
 
-    if ((key = ftok("kirk2.c", 'B')) == -1)
-    { /* same key as kirk.c */
+    if ((key = ftok("kirk2.c", 'B')) == -1) // Gave it an ID of B
+    {                                       /* same key as kirk.c */
         perror("ftok");
         exit(1);
     }

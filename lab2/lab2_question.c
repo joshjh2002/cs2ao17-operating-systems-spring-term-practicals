@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
 	int counter = 0;
 	int child1 = fork();
 
+	// if child == 0, then it is the child process
 	if (child1 == 0)
 	{
 
@@ -17,10 +18,12 @@ int main(int argc, char *argv[])
 			sleep(1);
 		}
 	}
-	else
+	else // this is the parent process
 	{
+		// create a second child
 		int child2 = fork();
 
+		// if child2 == 0, the current process is the second child
 		if (child2 == 0)
 		{
 			for (counter = 0; counter < 10; counter++)
@@ -29,7 +32,7 @@ int main(int argc, char *argv[])
 				sleep(1);
 			}
 		}
-		else
+		else // parent process
 		{
 			for (counter = 0; counter < 10; counter++)
 			{
